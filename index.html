@@ -67,6 +67,8 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 ol.steps{margin:.5rem 0 0;padding-left:1.2rem}
 ol.steps li{margin:.35rem 0}
 .note{border-left:4px solid var(--accent);padding:.3rem .8rem;margin-top:.9rem;color:var(--muted);font-size:.92rem}
+.go{display:inline-block;margin-top:.9rem;background:var(--accent);color:var(--accent-ink);padding:.6rem 1rem;border-radius:8px;font-weight:700;text-decoration:none}
+.soon{display:block;margin-top:.9rem;color:var(--muted);font-size:.9rem}
 .lights{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
 .lights span{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem}
 .lights i{width:.8rem;height:.8rem;border-radius:50%;display:inline-block}
@@ -106,6 +108,7 @@ footer{padding-top:2rem;padding-bottom:2.5rem;color:var(--muted);font-size:.88re
     <h2 id="pTitle"></h2>
     <ol class="steps" id="pSteps"></ol>
     <div class="note" id="pNote"></div>
+    <div id="pGo"></div>
     <div class="lights" id="lights" hidden>
       <span><i style="background:#2E9E57"></i>Green: on track</span>
       <span><i style="background:#E2B007"></i>Yellow: needs attention</span>
@@ -161,6 +164,7 @@ footer{padding-top:2rem;padding-bottom:2.5rem;color:var(--muted);font-size:.88re
     document.getElementById('pTitle').textContent=p.t;
     document.getElementById('pSteps').innerHTML=p.s.map(function(x){return '<li>'+x+'</li>'}).join('');
     document.getElementById('pNote').textContent=p.n;
+    document.getElementById('pGo').innerHTML=k==='school'?'<a class="go" href="teacher.html">Open the teacher portal demo</a>':'<span class="soon">This portal demo is coming next.</span>';
     document.getElementById('lights').hidden=!(k==='school');
   }
   btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
@@ -172,4 +176,4 @@ footer{padding-top:2rem;padding-bottom:2.5rem;color:var(--muted);font-size:.88re
 })();
 </script>
 </body>
-  </html>
+</html>
