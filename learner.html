@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learner portal | EduTrack by M&amp;M Tech Innovation (Demo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F6F7;--ink:#0F2233;--muted:#4A6072;--card:#fff;--line:#CBD8DF;--ac:#0B7A75;--aci:#fff;--chip:#E3EDF0;--g:#2E9E57;--y:#E2B007;--r:#D64545;--h:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;--b:'Nunito Sans','Segoe UI',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#0A1620;--ink:#EAF2F5;--muted:#9DB3C1;--card:#122332;--line:#24394A;--ac:#3CC9BF;--aci:#06201F;--chip:#183044}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 .98rem/1.5 var(--b);overflow-x:hidden}
+h1,h2,h3{font-family:var(--h);margin:0;line-height:1.15}
+.demo{background:var(--ink);color:var(--bg);text-align:center;font-size:.82rem;padding:.4rem 1rem}
+.w{max-width:760px;margin:0 auto;padding:0 1rem}
+header{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.8rem 0}
+header a{color:var(--ac);font-weight:700;text-decoration:none}
+.brand{font:800 1.05rem var(--h)}.fd{font-size:.78rem;color:var(--muted)}
+button,select{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.55rem}
+label{font-size:.8rem;color:var(--muted);display:block;margin-bottom:.15rem}
+.info{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.8rem 0}
+.info h1{font-size:1.5rem}.info p{margin:.3rem 0 0;color:var(--muted)}
+.tabs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.3rem}
+.tabs button{flex:0 0 auto;background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-weight:700}
+.tabs button[aria-pressed=true]{background:var(--ac);color:var(--aci);border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;margin-top:.8rem}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:460px}
+th,td{text-align:left;padding:.45rem .5rem;border-bottom:1px solid var(--line);font-size:.9rem}
+th{color:var(--muted);font-weight:700}
+.d{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.35rem}
+.dg{background:var(--g)}.dy{background:var(--y)}.dr{background:var(--r)}
+.sm{font-size:.85rem;color:var(--muted)}
+.btn{background:var(--ac);color:var(--aci);border:0;border-radius:8px;padding:.5rem .9rem;font-weight:700}
+.btn.o{background:var(--chip);color:var(--ink);border:1px solid var(--line)}
+.tag{display:inline-block;border-radius:999px;padding:.1rem .6rem;font-size:.8rem;font-weight:700;background:var(--chip)}
+.note{border-left:4px solid var(--ac);padding:.2rem .7rem;color:var(--muted);font-size:.88rem;margin-top:.8rem}
+.calc{max-width:360px;margin:.8rem auto 0}
+.scr{background:var(--ink);color:var(--bg);border-radius:12px;padding:.7rem .9rem;text-align:right;min-height:5rem;word-break:break-all}
+.scr .e{font-size:.95rem;opacity:.8;min-height:1.4rem}.scr .r{font:800 1.9rem var(--h)}
+.pad{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-top:.5rem}
+.pad button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.75rem 0;font-weight:700;font-size:1rem}
+.pad .op{background:var(--chip)}.pad .eq{background:var(--ac);color:var(--aci);grid-column:span 2}
+footer{padding:1.5rem 0 2rem;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="demo">Demonstration with fictional data. Names and marks are not real.</div>
+<div class="w">
+<header><div><div class="brand">EduTrack Learner portal</div><div class="fd">Founded by M&amp;M Tech Innovation</div></div><a href="index.html">Home</a></header>
+<label for="ls">Demo learner</label><select id="ls"></select>
+<div class="info" id="info"></div>
+<div class="tabs" id="tabs">
+<button data-a="tab" data-v="re" aria-pressed="true">My results</button>
+<button data-a="tab" data-v="as" aria-pressed="false">Assignments</button>
+<button data-a="tab" data-v="ca" aria-pressed="false">Calculator</button>
+</div>
+<main id="main" aria-live="polite"></main>
+<div class="note">Only you and your linked guardian can see this page. Colours are private and are never shown to classmates. They are there to help you decide what to practise next, not to judge you.</div>
+<footer>Founded by M&amp;M Tech Innovation. Prototype for portfolio and stakeholder feedback. Not approved by any education department. The calculator is an original design and is not affiliated with any calculator brand.</footer>
+</div>
+<script>
+(function(){
+var T={'English HL':'Comprehension|Language structures|Essay writing|Poetry|Novel','isiZulu FAL':'Comprehension|Language structures|Essay writing|Poetry|Drama','Life Orientation':'Self and society|Careers|Study skills|Health|Citizenship','Mathematics':'Algebra|Functions|Number patterns|Trigonometry|Finance and growth','Mathematical Literacy':'Finance|Measurement|Maps and plans|Data handling|Probability','Physical Sciences':'Mechanics|Waves and light|Electricity|Matter and materials|Chemical change','Life Sciences':'Cells|Human systems|Genetics|Ecology|Evolution','Geography':'Climatology|Geomorphology|Map work and GIS|Settlements|Economic geography','Accounting':'Journals and ledgers|Financial statements|Reconciliations|Cost accounting|VAT and budgets','Business Studies':'Business environments|Entrepreneurship|Operations|Human resources|Ethics','Economics':'Macro-economy|Markets|Inflation and growth|Economic pursuits|SA economy'};
+var TG={'Mathematics':'Whole numbers|Fractions and decimals|Algebra|Geometry|Data handling','Natural Sciences':'Life and living|Matter and materials|Energy and change|Planet Earth','Social Sciences':'Historical skills|Map skills|Resources|Communities','Economic and Management Sciences':'The economy|Financial literacy|Entrepreneurship|Accounting basics','Technology':'Structures|Processing|Mechanical systems|Design process','Creative Arts':'Music|Drama|Visual art|Dance'};
+var GET=['English HL','isiZulu FAL','Mathematics','Natural Sciences','Social Sciences','Economic and Management Sciences','Technology','Creative Arts','Life Orientation'];
+var F=['English HL','isiZulu FAL','Life Orientation'];
+var DL=[{n:'Thando Dlamini',c:'8C',g:8,s:'General education',u:GET},{n:'Naledi Mokoena',c:'10A',g:10,s:'Science stream',u:F.concat(['Mathematics','Physical Sciences','Life Sciences','Geography'])},{n:'Sipho Nkosi',c:'10C',g:10,s:'Commerce stream',u:F.concat(['Mathematics','Accounting','Business Studies','Economics'])},{n:'Zanele Sithole',c:'11B',g:11,s:'Commerce stream',u:F.concat(['Mathematics','Accounting','Business Studies','Economics'])},{n:'Kabelo Khumalo',c:'12A',g:12,s:'Science stream',u:F.concat(['Mathematics','Physical Sciences','Life Sciences','Geography'])}];
+function R(s){return function(){s|=0;s=s+0x6D2B79F5|0;var t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function cl(x){return Math.max(2,Math.min(98,Math.round(x)))}
+function av(a){return a.reduce(function(x,y){return x+y},0)/a.length}
+function st(p){return p>=60?'g':p>=40?'y':'r'}
+function lv(p){return p>=80?7:p>=70?6:p>=60?5:p>=50?4:p>=40?3:p>=30?2:1}
+function dot(p){return '<span class="d d'+st(p)+'"></span>'}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function tops(s,g){return (g<10&&TG[s]||T[s]).split('|')}
+var D=DL.map(function(l,i){var r=R(i*131+7),a=40+r()*28,tm={},tp={};
+l.u.forEach(function(s,k){var o=(k*7%15)-7+(r()*10-5);tm[s]=[0,1,2,3].map(function(t){return cl(a+o+t*2+(r()*8-4))});
+tp[s]=tops(s,l.g).map(function(x,j){var mx=j%2?100:50,p=cl(av(tm[s])+(r()*34-17));return {m:Math.round(p*mx/100),x:mx}})});
+var u=l.u;l.tm=tm;l.tp=tp;l.A=[{t:'Term 4 revision worksheet',s:u[0],due:'2026-11-20',st:0},{t:'Practical task',s:u[3],due:'2026-11-27',st:3},{t:'Topic practice set',s:u[1],due:'2026-12-04',st:0}];return l});
+var S={i:0,tab:'re',e:'',r:'',deg:true,ans:0,done:false};
+var ls=document.getElementById('ls'),mn=document.getElementById('main');
+D.forEach(function(l,i){var o=document.createElement('option');o.value=i;o.textContent=l.n+' (Grade '+l.g+', '+l.c+')';ls.appendChild(o)});
+function msg(p){return p>=60?'Doing well':p>=40?'Keep going':'Needs focus'}
+function re(){var l=D[S.i],best,worst,rows='';
+l.u.forEach(function(s){var t=l.tm[s];if(!best||t[3]>l.tm[best][3])best=s;if(!worst||t[3]<l.tm[worst][3])worst=s;
+rows+='<tr><td>'+dot(t[3])+esc(s)+'</td>'+t.map(function(p){return '<td>'+p+'%<div class="sm">Level '+lv(p)+'</div></td>'}).join('')+'<td><span class="tag">'+msg(t[3])+'</span></td></tr>'});
+var tr=[];l.u.forEach(function(s){tops(s,l.g).forEach(function(t,j){var q=l.tp[s][j];if(q.m/q.x<.5)tr.push({s:s,t:t,q:q})})});
+return '<div class="card"><h3>My results</h3><div class="sc"><table><tr><th>Subject</th><th>Term 1</th><th>Term 2</th><th>Term 3</th><th>Term 4</th><th>Right now</th></tr>'+rows+'</table></div><p>Your strongest subject is <b>'+esc(best)+'</b>. A good place to focus next is <b>'+esc(worst)+'</b>. Small, steady practice beats last-minute cramming.</p></div>'+
+'<div class="card"><h3>Topics to practise</h3>'+(tr.length?tr.slice(0,6).map(function(x){return '<p><b>'+esc(x.s)+': '+esc(x.t)+'</b><br><span class="sm">Topic test: '+x.q.m+'/'+x.q.x+'. Next step: redo the test questions you missed, try five new practice questions, then ask your teacher to check your working.</span></p>'}).join(''):'<p>No topics need extra practice right now. Well done.</p>')+'</div>'}
+var SH={0:'Not done yet',1:'You marked this Done. Your teacher will check it.',3:'Your teacher sent this back. Please fix it and mark it Done again.'};
+function as(){var l=D[S.i];return l.A.map(function(a,i){return '<div class="card"><h3>'+esc(a.t)+'</h3><div class="sm">'+esc(a.s)+'. Due '+a.due+'</div><p><span class="tag">'+SH[a.st]+'</span></p>'+(a.st===1?'<button class="btn o" data-a="undo" data-v="'+i+'">Undo Done</button>':'<button class="btn" data-a="done" data-v="'+i+'">Mark as Done</button>')+'</div>'}).join('')+'<div class="note">Done is only your own declaration. Your teacher verifies it after receiving your work. If your teacher asks for a printed copy, hand it in at school.</div>'}
+function ev(s,deg,ans){s=s.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/\s+/g,'');var p=0;
+function pk(){return s[p]}
+function ex(){var v=tm();while(pk()=='+'||pk()=='-'){var o=s[p++],r=tm();v=o=='+'?v+r:v-r}return v}
+function tm(){var v=pw();while(pk()=='*'||pk()=='/'||(pk()&&/[(a-zA-Z]/.test(pk()))){var o=pk(),r;if(o=='*'||o=='/'){p++}r=pw();if(o=='/'){if(r===0)throw 0;v/=r}else v*=r}return v}
+function pw(){var b=un();if(pk()=='^'){p++;return Math.pow(b,pw())}return b}
+function un(){if(pk()=='-'){p++;return -pw()}if(pk()=='+'){p++;return pw()}return po()}
+function po(){var v=pr();while(pk()=='%'){p++;v/=100}return v}
+function pr(){if(pk()=='('){p++;var v=ex();if(pk()==')')p++;return v}
+var m=/^(\d+\.?\d*|\.\d+)/.exec(s.slice(p));if(m){p+=m[0].length;return parseFloat(m[0])}
+m=/^[a-zA-Z]+/.exec(s.slice(p));if(!m)throw 0;p+=m[0].length;var n=m[0];
+if(n=='pi')return Math.PI;if(n=='e')return Math.E;if(n=='Ans')return ans;
+var a=pr(),d=deg?a*Math.PI/180:a;
+if(n=='sin')return Math.sin(d);if(n=='cos')return Math.cos(d);if(n=='tan')return Math.tan(d);
+if(n=='log'){if(a<=0)throw 0;return Math.log10(a)}if(n=='ln'){if(a<=0)throw 0;return Math.log(a)}
+if(n=='sqrt'){if(a<0)throw 0;return Math.sqrt(a)}throw 0}
+var v=ex();if(p<s.length)throw 0;if(!isFinite(v))throw 0;return v}
+function fm(v){if(Math.abs(v)<1e-12)return '0';return String(parseFloat(v.toPrecision(12)))}
+var KEYS=[['DEG','m','op'],['sin','sin(','op'],['cos','cos(','op'],['tan','tan(','op'],['AC','ac','op'],['log','log(','op'],['ln','ln(','op'],['√','√(','op'],['x²','^2','op'],['⌫','del','op'],['(','(',''],[')',')',''],['π','π',''],['^','^','op'],['÷','÷','op'],['7','7',''],['8','8',''],['9','9',''],['×','×','op'],['e','e',''],['4','4',''],['5','5',''],['6','6',''],['−','−','op'],['%','%','op'],['1','1',''],['2','2',''],['3','3',''],['+','+','op'],['Ans','Ans',''],['0','0',''],['.','.',''],['(−)','−',''],['=','eq','eq']];
+function ca(){return '<div class="calc"><div class="scr" aria-live="polite"><div class="e" id="ce"></div><div class="r" id="cr">0</div></div><div class="pad">'+KEYS.map(function(k){return '<button class="'+k[2]+'" data-a="k" data-v="'+k[1]+'">'+(k[1]=='m'?(S.deg?'DEG':'RAD'):k[0])+'</button>'}).join('')+'</div><p class="sm">Original calculator design. Angles are in '+(S.deg?'degrees':'radians')+'. Tap DEG to switch.</p></div>'}
+function cdraw(){var e=document.getElementById('ce'),r=document.getElementById('cr');if(e){e.textContent=S.e;r.textContent=S.r||'0'}}
+function key(v){if(v=='ac'){S.e='';S.r='';S.done=false}
+else if(v=='del'){S.e=S.e.replace(/(sin\(|cos\(|tan\(|log\(|ln\(|√\(|Ans|.)$/,'');S.r=''}
+else if(v=='m'){S.deg=!S.deg;draw();return}
+else if(v=='eq'){try{var x=ev(S.e,S.deg,S.ans);S.r=fm(x);S.ans=x}catch(er){S.r='Math error'}S.done=true}
+else{if(S.done){S.e=/^[0-9.(πeA]|^(sin|cos|tan|log|ln|√)/.test(v)?'':'Ans';S.r='';S.done=false}S.e+=v}
+cdraw()}
+function draw(){var l=D[S.i];document.getElementById('info').innerHTML='<h1>Hello, '+esc(l.n.split(' ')[0])+'</h1><p>Grade '+l.g+', class '+l.c+'. '+l.s+'. Term 4 in progress.</p>';
+document.querySelectorAll('#tabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.v===S.tab)});
+mn.innerHTML={re:re,as:as,ca:ca}[S.tab]();cdraw()}
+ls.addEventListener('change',function(){S.i=+ls.value;draw()});
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,v=b.dataset.v;
+if(a=='k'){key(v);return}
+if(a=='tab')S.tab=v;else if(a=='done')D[S.i].A[+v].st=1;else if(a=='undo')D[S.i].A[+v].st=0;
+draw()});
+draw()})();
+</script>
+</body>
+</html>
