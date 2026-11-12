@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teacher portal | EduTrack by M&amp;M Tech Innovation (Demo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F6F7;--ink:#0F2233;--muted:#4A6072;--card:#fff;--line:#CBD8DF;--ac:#0B7A75;--aci:#fff;--chip:#E3EDF0;--g:#2E9E57;--y:#E2B007;--r:#D64545;--h:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;--b:'Nunito Sans','Segoe UI',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#0A1620;--ink:#EAF2F5;--muted:#9DB3C1;--card:#122332;--line:#24394A;--ac:#3CC9BF;--aci:#06201F;--chip:#183044}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 .98rem/1.5 var(--b);overflow-x:hidden}
+h1,h2,h3{font-family:var(--h);margin:0;line-height:1.15}
+.demo{background:var(--ink);color:var(--bg);text-align:center;font-size:.82rem;padding:.4rem 1rem}
+.w{max-width:980px;margin:0 auto;padding:0 1rem}
+header{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.8rem 0}
+header a{color:var(--ac);font-weight:700;text-decoration:none}
+.brand{font:800 1.05rem var(--h)}.fd{font-size:.78rem;color:var(--muted)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem}
+select,input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.55rem}
+label{font-size:.8rem;color:var(--muted);display:block;margin-bottom:.15rem}
+.info{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.8rem 0}
+.info h1{font-size:1.5rem}.info p{margin:.3rem 0 0;color:var(--muted)}
+.tabs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.3rem}
+.tabs button{flex:0 0 auto;background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-weight:700}
+.tabs button[aria-pressed=true]{background:var(--ac);color:var(--aci);border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;margin-top:.8rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.8rem}
+.stat{border-radius:12px;padding:.7rem;color:#fff;font-weight:700}
+.stat b{display:block;font:800 1.7rem var(--h)}
+.sg{background:var(--g)}.sy{background:#9A7600}.sr{background:var(--r)}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{text-align:left;padding:.45rem .5rem;border-bottom:1px solid var(--line);font-size:.9rem}
+th{color:var(--muted);font-weight:700}
+.d{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.35rem}
+.dg{background:var(--g)}.dy{background:var(--y)}.dr{background:var(--r)}
+.bar{height:.5rem;background:var(--chip);border-radius:9px;overflow:hidden;margin:.3rem 0}
+.bar i{display:block;height:100%}
+.tp{padding:.6rem 0;border-bottom:1px solid var(--line)}
+.sm{font-size:.85rem;color:var(--muted)}
+details summary{cursor:pointer;font-weight:700;color:var(--ac)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--line);width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left}
+.btn{background:var(--ac);color:var(--aci);border:0;border-radius:8px;padding:.5rem .9rem;font-weight:700}
+.btn.o{background:var(--chip);color:var(--ink);border:1px solid var(--line)}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;align-items:end}
+.note{border-left:4px solid var(--ac);padding:.2rem .7rem;color:var(--muted);font-size:.88rem;margin-top:.8rem}
+footer{padding:1.5rem 0 2rem;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="demo">Demonstration with fictional data. Names, marks and schools are not real.</div>
+<div class="w">
+<header><div><div class="brand">EduTrack Teacher portal</div><div class="fd">Founded by M&amp;M Tech Innovation</div></div><a href="index.html">Home</a></header>
+<div class="ctl">
+<div><label for="cs">Class</label><select id="cs"></select></div>
+<div><label for="rs">Viewing as</label><select id="rs"></select></div>
+</div>
+<div class="info" id="info"></div>
+<div class="tabs" id="tabs">
+<button data-a="tab" data-v="ov" aria-pressed="true">Overview</button>
+<button data-a="tab" data-v="tp" aria-pressed="false">Topic tests</button>
+<button data-a="tab" data-v="as" aria-pressed="false">Assignments</button>
+<button data-a="tab" data-v="ln" aria-pressed="false">Learners</button>
+</div>
+<main id="main" aria-live="polite"></main>
+<div class="note">Colours: green is an achiever (60% and above), yellow is moderate (40 to 59%), red is critical and needs attention (below 40%). Thresholds are demo defaults that each school can configure. Indicators support teacher judgement and never replace it. Topic lists follow the CAPS themes in outline and must be checked against the official documents before real use.</div>
+<footer>Founded by M&amp;M Tech Innovation. Prototype for portfolio and stakeholder feedback. Not approved by any education department.</footer>
+</div>
+<script>
+(function(){
+var FN=['Thando','Lethabo','Sipho','Naledi','Kabelo','Zanele','Bongani','Palesa','Themba','Nomsa','Tumelo','Ayanda','Lwazi','Refilwe','Siyabonga','Karabo','Thabo','Lindiwe','Mpho','Zodwa','Katlego','Nandi','Sibusiso','Boitumelo','Amahle','Tshepo','Busisiwe','Lerato','Musa','Rethabile'];
+var SN='Dlamini,Nkosi,Mokoena,Sithole,Khumalo,Mahlangu,Ndlovu,Masilela,Skosana,Mthembu,Radebe,Zwane,Mabena,Ngwenya,Maseko,Shabangu,Motaung,Mnguni,Tshabalala,Nxumalo,Mkhize,Lekota,Sibiya,Mashaba,Ledwaba,Thwala,Mabuza,Magagula,Nhlapo,Tladi,Moloi'.split(',');
+var T={'English HL':'Comprehension|Language structures|Essay writing|Poetry|Novel','isiZulu FAL':'Comprehension|Language structures|Essay writing|Poetry|Drama','Life Orientation':'Self and society|Careers|Study skills|Health|Citizenship','Mathematics':'Algebra|Functions|Number patterns|Trigonometry|Finance and growth','Mathematical Literacy':'Finance|Measurement|Maps and plans|Data handling|Probability','Physical Sciences':'Mechanics|Waves and light|Electricity|Matter and materials|Chemical change','Life Sciences':'Cells|Human systems|Genetics|Ecology|Evolution','Geography':'Climatology|Geomorphology|Map work and GIS|Settlements|Economic geography','Engineering Graphics and Design':'Drawing techniques|Orthographic views|Isometric views|Loci|Mechanisms','Information Technology':'Programming|Databases|Networks|Data structures|Systems technology','Accounting':'Journals and ledgers|Financial statements|Reconciliations|Cost accounting|VAT and budgets','Business Studies':'Business environments|Entrepreneurship|Operations|Human resources|Ethics','Economics':'Macro-economy|Markets|Inflation and growth|Economic pursuits|SA economy','Tourism':'Tourism sectors|Map work|Culture and heritage|Sustainable tourism|Foreign exchange','Consumer Studies':'Food and nutrition|Clothing|Housing|Consumer rights|Entrepreneurship','History':'Communism|Apartheid and resistance|Independent Africa|Civil rights|Source skills','Computer Applications Technology':'Word processing|Spreadsheets|Databases|Networks|Social implications'};
+var TG={'Mathematics':'Whole numbers|Fractions and decimals|Algebra|Geometry|Data handling','Natural Sciences':'Life and living|Matter and materials|Energy and change|Planet Earth','Social Sciences':'Historical skills|Map skills|Resources|Communities','Economic and Management Sciences':'The economy|Financial literacy|Entrepreneurship|Accounting basics','Technology':'Structures|Processing|Mechanical systems|Design process','Creative Arts':'Music|Drama|Visual art|Dance'};
+var ST=[['Science',['Mathematics','Physical Sciences','Life Sciences','Geography']],['Technical',['Mathematics','Physical Sciences','Engineering Graphics and Design','Information Technology']],['Commerce',['Mathematics','Accounting','Business Studies','Economics']],['Tourism and services',['Mathematical Literacy','Tourism','Consumer Studies','Geography']],['Humanities',['Mathematical Literacy','History','Geography','Business Studies']],['Computing',['Mathematical Literacy','Computer Applications Technology','Business Studies','Economics']]];
+var SM={'10A':0,'10B':1,'10C':2,'10D':3,'10E':4,'10F':5,'10G':3,'10H':4,'10I':5,'11A':0,'11B':2,'11C':1,'11D':3,'12A':0,'12B':2,'12C':3,'12D':1};
+var GET=['English HL','isiZulu FAL','Mathematics','Natural Sciences','Social Sciences','Economic and Management Sciences','Technology','Creative Arts','Life Orientation'];
+var C=[];[[8,8],[9,6],[10,9],[11,4],[12,4]].forEach(function(x){for(var i=0;i<x[1];i++)C.push({g:x[0],id:x[0]+String.fromCharCode(65+i),i:C.length})});
+function R(s){return function(){s|=0;s=s+0x6D2B79F5|0;var t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hs(s){var a=7;for(var i=0;i<s.length;i++)a=(a*31+s.charCodeAt(i))|0;return Math.abs(a)}
+function cl(x){return Math.max(2,Math.min(98,Math.round(x)))}
+function subs(c){return c.g<10?GET:['English HL','isiZulu FAL','Life Orientation'].concat(ST[SM[c.id]][1])}
+function tops(s,g){return (g<10&&TG[s]||T[s]).split('|')}
+function tn(i,s){return ['Mr ','Ms '][(i+s)%2]+FN[(i*3+s*7)%FN.length][0]+'. '+SN[(i*11+s*5+2)%SN.length]}
+function st(p){return p>=60?'g':p>=40?'y':'r'}
+var LB={g:'Achiever',y:'Moderate',r:'Critical'};
+function lv(p){return p>=80?7:p>=70?6:p>=60?5:p>=50?4:p>=40?3:p>=30?2:1}
+function av(a){return a.reduce(function(x,y){return x+y},0)/a.length}
+function dot(p){return '<span class="d d'+st(p)+'"></span>'}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var M={};
+function gen(c){if(M[c.id])return M[c.id];var r=R(c.i*977+13),n=38+Math.floor(r()*3),ss=subs(c),L=[];
+for(var k=0;k<n;k++){var a=24+Math.pow(r(),.8)*64,d=r()*10-4,o={},tm={},tp={};
+ss.forEach(function(s){o[s]=(hs(s)%17)-8+(r()*10-5);tm[s]=[0,1,2,3].map(function(t){return cl(a+o[s]+d*t+(r()*10-5))});
+tp[s]=tops(s,c.g).map(function(x,j){var mx=j%2?100:50,p=cl(av(tm[s])+(r()*38-19));return {m:Math.round(p*mx/100),x:mx}})});
+L.push({id:c.id+'-'+(k+1<10?'0':'')+(k+1),n:FN[Math.floor(r()*FN.length)]+' '+SN[Math.floor(r()*SN.length)],tm:tm,tp:tp})}
+var A=[{t:'Term 4 revision worksheet',s:ss[0],due:'2026-10-30',st:{}},{t:'Practical task',s:ss[ss.length>3?3:1],due:'2026-11-06',st:{}}];
+A.forEach(function(x){L.forEach(function(l){var q=r();x.st[l.id]=q<.45?1:q<.55?2:q<.6?3:0})});
+return M[c.id]={L:L,A:A,r:r}}
+var S={ci:0,role:'',tab:'ov',sel:null};
+var cs=document.getElementById('cs'),rs=document.getElementById('rs'),mn=document.getElementById('main');
+[8,9,10,11,12].forEach(function(g){var og=document.createElement('optgroup');og.label='Grade '+g;C.filter(function(c){return c.g===g}).forEach(function(c){var o=document.createElement('option');o.value=c.i;o.textContent=c.id;og.appendChild(o)});cs.appendChild(og)});
+function vis(c){return S.role?[S.role]:subs(c)}
+function lat(l,ss){return av(ss.map(function(s){return l.tm[s][3]}))}
+function head(){var c=C[S.ci],d=gen(c);
+rs.innerHTML='<option value="">Homeroom teacher (all subjects)</option>'+subs(c).map(function(s){return '<option>'+esc(s)+'</option>'}).join('');rs.value=S.role;
+document.getElementById('info').innerHTML='<h1>Class '+c.id+'</h1><p>'+(c.g>9?ST[SM[c.id]][0]+' stream. ':'General education. ')+'Homeroom teacher: '+tn(c.i,0)+'. '+d.L.length+' learners. Term 4 in progress. Principal: Mr T. Mokoena (Demo Secondary School).</p>'}
+function ov(){var c=C[S.ci],d=gen(c),ss=vis(c),n={g:0,y:0,r:0},rows='',best,worst;
+d.L.forEach(function(l){n[st(lat(l,ss))]++});
+var rr=ss.map(function(s){var t=[0,1,2,3].map(function(k){return av(d.L.map(function(l){return l.tm[s][k]}))});return{s:s,t:t}});
+rr.forEach(function(x){if(!best||x.t[3]>best.t[3])best=x;if(!worst||x.t[3]<worst.t[3])worst=x;
+rows+='<tr><td>'+dot(x.t[3])+esc(x.s)+'<div class="sm">'+tn(c.i,ss.indexOf(x.s)+1)+'</div></td>'+x.t.map(function(p){return '<td>'+Math.round(p)+'%<div class="sm">Level '+lv(p)+'</div></td>'}).join('')+'<td>'+(x.t[3]>x.t[0]+1?'Up':x.t[3]<x.t[0]-1?'Down':'Steady')+'</td></tr>'});
+return '<div class="stats"><div class="stat sg"><b>'+n.g+'</b>Achievers</div><div class="stat sy"><b>'+n.y+'</b>Moderate</div><div class="stat sr"><b>'+n.r+'</b>Critical</div></div>'+
+'<div class="card"><h3>Class averages by term</h3><div class="sc"><table><tr><th>Subject</th><th>Term 1</th><th>Term 2</th><th>Term 3</th><th>Term 4</th><th>Trend</th></tr>'+rows+'</table></div></div>'+
+(rr.length>1?'<div class="card"><h3>What stands out</h3><p>Strongest subject: <b>'+esc(best.s)+'</b> ('+Math.round(best.t[3])+'%). Needs most attention: <b>'+esc(worst.s)+'</b> ('+Math.round(worst.t[3])+'%).</p></div>':'')}
+function tp(){var c=C[S.ci],d=gen(c),h='';
+vis(c).forEach(function(s){var si=subs(c).indexOf(s);h+='<div class="card"><h3>'+esc(s)+'</h3><div class="sm">Teacher: '+tn(c.i,si+1)+'</div>';
+tops(s,c.g).forEach(function(t,j){var mx=j%2?100:50,ps=d.L.map(function(l){var q=l.tp[s][j];return {l:l,q:q,p:q.m/q.x*100}}),a=av(ps.map(function(x){return x.p})),cr=ps.filter(function(x){return x.p<40});
+h+='<div class="tp"><b>'+dot(a)+esc(t)+'</b> <span class="sm">test out of '+mx+'</span><div class="bar"><i style="width:'+a+'%;background:var(--'+st(a)+')"></i></div><div class="sm">Class average '+Math.round(a)+'%. '+cr.length+' critical.</div>';
+if(cr.length)h+='<details><summary>See critical learners</summary>'+cr.sort(function(x,y){return x.p-y.p}).map(function(x){return '<div class="sm">'+dot(x.p)+esc(x.l.n)+': '+x.q.m+'/'+x.q.x+' (Critical)</div>'}).join('')+'<div class="sm"><b>Suggested next step:</b> '+(a<50?'reteach this topic to the whole class, then retest.':'small-group support and a short follow-up test for these learners.')+'</div></details>';
+h+='</div>'});h+='</div>'});return h}
+function as(){var c=C[S.ci],d=gen(c),ss=vis(c),h='<div class="card"><h3>New assignment</h3><div class="f"><div><label for="nt">Title</label><input id="nt" placeholder="e.g. Algebra worksheet"></div><div><label for="ns">Subject</label><select id="ns">'+subs(c).map(function(s){return '<option>'+esc(s)+'</option>'}).join('')+'</select></div><div><label for="nd">Due date</label><input id="nd" type="date" value="2026-11-13"></div><button class="btn" data-a="pub">Publish to '+c.id+'</button></div></div>';
+d.A.forEach(function(x,ai){if(S.role&&x.s!==S.role)return;var k=[0,0,0,0];d.L.forEach(function(l){k[x.st[l.id]]++});
+h+='<div class="card"><h3>'+esc(x.t)+'</h3><div class="sm">'+esc(x.s)+'. Due '+x.due+'. Published to '+c.id+'.</div><p class="sm">Learners who pressed Done: <b>'+k[1]+'</b> waiting for you. Verified (green): <b>'+k[2]+'</b>. Sent back: <b>'+k[3]+'</b>. Not done: <b>'+k[0]+'</b>.</p>'+
+'<details><summary>Check learners</summary><button class="btn o" data-a="sim" data-v="'+ai+'">Demo: more learners press Done</button>'+d.L.map(function(l){var s=x.st[l.id];return '<div class="row"><span>'+(s==2?'<span class="d dg"></span>':'<span class="d" style="background:var(--line)"></span>')+esc(l.n)+'</span><span>'+(s==1?'<button class="btn" data-a="vf" data-v="'+ai+'|'+l.id+'|2">Verify</button> <button class="btn o" data-a="vf" data-v="'+ai+'|'+l.id+'|3">Send back</button>':s==2?'Verified':s==3?'Sent back':'Not done')+'</span></div>'}).join('')+'</details></div>'});
+return h+'<div class="note">Done is only a learner’s declaration. Work counts as received after you verify it.</div>'}
+function ln(){var c=C[S.ci],d=gen(c),ss=vis(c),h='';
+if(S.sel){var l=d.L.filter(function(x){return x.id===S.sel})[0];if(l){var best,worst;h+='<div class="card"><h3>'+esc(l.n)+'</h3><div class="sm">Learner '+l.id+'</div><div class="sc"><table><tr><th>Subject</th><th>T1</th><th>T2</th><th>T3</th><th>T4</th></tr>'+ss.map(function(s){var t=l.tm[s];if(!best||t[3]>l.tm[best][3])best=s;if(!worst||t[3]<l.tm[worst][3])worst=s;return '<tr><td>'+dot(t[3])+esc(s)+'</td>'+t.map(function(p){return '<td>'+p+'% L'+lv(p)+'</td>'}).join('')+'</tr>'}).join('')+'</table></div><p>Strongest: <b>'+esc(best)+'</b>. Needs attention: <b>'+esc(worst)+'</b>.</p>';
+var cr=[];ss.forEach(function(s){tops(s,c.g).forEach(function(t,j){var q=l.tp[s][j];if(q.m/q.x<.4)cr.push(esc(s)+': '+esc(t)+' ('+q.m+'/'+q.x+', Critical)')})});
+h+=(cr.length?'<b>Topics to revisit</b>'+cr.map(function(x){return '<div class="sm">'+x+'</div>'}).join(''):'<div class="sm">No critical topics.</div>')+'<p><button class="btn o" data-a="clr">Close</button></p></div>'}}
+return h+'<div class="card"><h3>'+d.L.length+' learners</h3>'+d.L.map(function(l){var p=lat(l,ss);return '<button class="row" data-a="ln1" data-v="'+l.id+'"><span>'+dot(p)+esc(l.n)+'</span><span class="sm">'+Math.round(p)+'% '+LB[st(p)]+'</span></button>'}).join('')+'</div>'}
+function draw(){head();document.querySelectorAll('#tabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.v===S.tab)});mn.innerHTML={ov:ov,tp:tp,as:as,ln:ln}[S.tab]()}
+cs.addEventListener('change',function(){S.ci=+cs.value;S.role='';S.sel=null;draw()});
+rs.addEventListener('change',function(){S.role=rs.value;draw()});
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,v=b.dataset.v,c=C[S.ci],d=gen(c);
+if(a==='tab'){S.tab=v}
+else if(a==='ln1'){S.sel=v}
+else if(a==='clr'){S.sel=null}
+else if(a==='vf'){var p=v.split('|');d.A[+p[0]].st[p[1]]=+p[2]}
+else if(a==='sim'){var x=d.A[+v];d.L.forEach(function(l){if(x.st[l.id]===0&&d.r()<.4)x.st[l.id]=1})}
+else if(a==='pub'){var t=document.getElementById('nt').value.trim();if(!t){document.getElementById('nt').focus();return}var o={t:t,s:document.getElementById('ns').value,due:document.getElementById('nd').value,st:{}};d.L.forEach(function(l){o.st[l.id]=0});d.A.unshift(o)}
+var open=[].map.call(document.querySelectorAll('details[open]'),function(x){return x.querySelector('summary').textContent});
+draw();document.querySelectorAll('details').forEach(function(x){if(a!=='tab'&&open.indexOf(x.querySelector('summary').textContent)>-1)x.open=true})});
+cs.value=0;draw()})();
+</script>
+</body>
+  </html>
