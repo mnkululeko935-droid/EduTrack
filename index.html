@@ -30,7 +30,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .hero h1{font-size:clamp(2.1rem,7vw,3.8rem);font-weight:800;letter-spacing:-.02em}
 .hero p{max-width:34rem;margin:.9rem auto 0;color:var(--muted)}
 /* 3D books */
-.stage{height:330px;perspective:900px;perspective-origin:50% 30%;margin:.5rem auto 0;display:flex;align-items:center;justify-content:center;overflow:visible}
+.stage{height:330px;perspective:900px;perspective-origin:50% 30%;margin:.5rem auto 3rem;display:flex;align-items:center;justify-content:center;overflow:visible}
 .scene{position:relative;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-14deg) scale(var(--sc,1))}
 .ring{position:absolute;transform-style:preserve-3d;animation:spin 26s linear infinite}
 .stage:hover .ring,.stage:focus-within .ring,.stage.hold .ring{animation-play-state:paused}
@@ -73,7 +73,7 @@ ol.steps li{margin:.35rem 0}
 .lights span{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem}
 .lights i{width:.8rem;height:.8rem;border-radius:50%;display:inline-block}
 footer{padding-top:2rem;padding-bottom:2.5rem;color:var(--muted);font-size:.88rem}
-@media (max-width:520px){.stage{height:280px;--sc:.78}}
+@media (max-width:520px){.stage{height:280px;--sc:.78;margin-bottom:2.5rem}}
 @media (prefers-reduced-motion:reduce){.ring,.book{animation:none}.portal{transition:none}}
 </style>
 </head>
@@ -164,7 +164,8 @@ footer{padding-top:2rem;padding-bottom:2.5rem;color:var(--muted);font-size:.88re
     document.getElementById('pTitle').textContent=p.t;
     document.getElementById('pSteps').innerHTML=p.s.map(function(x){return '<li>'+x+'</li>'}).join('');
     document.getElementById('pNote').textContent=p.n;
-    document.getElementById('pGo').innerHTML=k==='school'?'<a class="go" href="teacher.html">Open the teacher portal demo</a>':'<span class="soon">This portal demo is coming next.</span>';
+    var g={school:['teacher.html','Open the teacher portal demo'],learner:['learner.html','Open the learner portal demo']}[k];
+    document.getElementById('pGo').innerHTML=g?'<a class="go" href="'+g[0]+'">'+g[1]+'</a>':'<span class="soon">This portal demo is coming next.</span>';
     document.getElementById('lights').hidden=!(k==='school');
   }
   btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
